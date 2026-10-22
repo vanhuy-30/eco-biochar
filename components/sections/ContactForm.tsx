@@ -2,16 +2,12 @@
 
 import { useEffect, useId, useRef, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { CheckCircle2, ChevronDown, LoaderCircle, TriangleAlert } from "lucide-react";
-import {
-  customerTypeOptions,
-  inquiryTypeOptions,
-  submitInquiry,
-  validateInquiry,
-  type InquiryErrors,
-  type InquiryForm,
-} from "@/lib/contact";
+import type { Dictionary } from "@/content/types";
+import { submitInquiry, validateInquiry, type InquiryErrors, type InquiryForm } from "@/lib/contact";
 import { onInquiryRequest } from "@/lib/inquiry";
 import { Button } from "@/components/ui/Button";
+
+type Copy = Dictionary["contact"]["form"];
 
 const empty: InquiryForm = {
   fullName: "",
@@ -35,7 +31,7 @@ const fieldOrder: (keyof InquiryForm)[] = [
   "message",
 ];
 
-export function ContactForm() {
+export function ContactForm({ t }: { t: Copy }) {
   const [form, setForm] = useState<InquiryForm>(empty);
   const [errors, setErrors] = useState<InquiryErrors>({});
   const [attempted, setAttempted] = useState(false);
@@ -60,13 +56,13 @@ export function ContactForm() {
     (key: keyof InquiryForm) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
       const next = { ...form, [key]: e.target.value };
       setForm(next);
-      if (attempted) setErrors(validateInquiry(next));
+      if (attempted) setErrors(validateInquiry(next, t.errors));
     };
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setAttempted(true);
-    const found = validateInquiry(form);
+    const found = validateInquiry(form, t.errors);
     setErrors(found);
     const firstInvalid = fieldOrder.find((k) => found[k]);
     if (firstInvalid) {
@@ -92,10 +88,10 @@ export function ContactForm() {
       onSubmit={onSubmit}
       noValidate
       aria-describedby="form-note"
-      className="rounded-[4px] bg-cream p-6 text-char md:p-10"
+      className="rounded-[4px] bg-surface p-6 text-ink md:p-10"
     >
       <div className="grid gap-x-6 gap-y-6 sm:grid-cols-2">
-        <Field id="fullName" label="Họ và tên" required error={errors.fullName}>
+        <Field id="fullName" label={t.fullName} required error={errors.fullName}>
           {(a) => (
             <input
               {...a}
@@ -107,7 +103,7 @@ export function ContactForm() {
             />
           )}
         </Field>
-        <Field id="organization" label="Công ty / Tổ chức" hint="Không bắt buộc">
+        <Field id="organization" label={t.organization} hint={t.optional}>
           {(a) => (
             <input
               {...a}
@@ -119,7 +115,7 @@ export function ContactForm() {
             />
           )}
         </Field>
-        <Field id="email" label="Email" required error={errors.email}>
+        <Field id="email" label={t.email} required error={errors.email}>
           {(a) => (
             <input
               {...a}
@@ -133,7 +129,7 @@ export function ContactForm() {
             />
           )}
         </Field>
-        <Field id="phone" label="Số điện thoại" hint="Không bắt buộc" error={errors.phone}>
+        <Field id="phone" label={t.phone} hint={t.optional} error={errors.phone}>
           {(a) => (
             <input
               {...a}
@@ -147,7 +143,7 @@ export function ContactForm() {
             />
           )}
         </Field>
-        <Field id="customerType" label="Bạn là" required error={errors.customerType} select>
+        <Field id="customerType" label={t.customerType} required error={errors.customerType} select>
           {(a) => (
             <select
               {...a}
@@ -157,9 +153,9 @@ export function ContactForm() {
               onChange={update("customerType")}
             >
               <option value="" disabled>
-                Chọn nhóm khách hàng
+                {t.customerTypePlaceholder}
               </option>
-              {customerTypeOptions.map((o) => (
+              {t.customerTypes.map((o) => (
                 <option key={o.value} value={o.value}>
                   {o.label}
                 </option>
@@ -167,7 +163,7 @@ export function ContactForm() {
             </select>
           )}
         </Field>
-        <Field id="inquiryType" label="Nhu cầu liên hệ" required error={errors.inquiryType} select>
+        <Field id="inquiryType" label={t.inquiryType} required error={errors.inquiryType} select>
           {(a) => (
             <select
               {...a}
@@ -177,9 +173,9 @@ export function ContactForm() {
               onChange={update("inquiryType")}
             >
               <option value="" disabled>
-                Chọn nhu cầu
+                {t.inquiryTypePlaceholder}
               </option>
-              {inquiryTypeOptions.map((o) => (
+              {t.inquiryTypes.map((o) => (
                 <option key={o.value} value={o.value}>
                   {o.label}
                 </option>
@@ -188,7 +184,7 @@ export function ContactForm() {
           )}
         </Field>
         <div className="sm:col-span-2">
-          <Field id="message" label="Nội dung" required error={errors.message}>
+          <Field id="message" label={t.message} required error={errors.message}>
             {(a) => (
               <textarea
                 {...a}
@@ -197,7 +193,7 @@ export function ContactForm() {
                 rows={5}
                 value={form.message}
                 onChange={update("message")}
-                placeholder="Ví dụ: loại cây trồng, quy mô sử dụng, dạng sản phẩm quan tâm…"
+                placeholder={t.messagePlaceholder}
               />
             )}
           </Field>
@@ -205,39 +201,44 @@ export function ContactForm() {
       </div>
 
       <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-        <p id="form-note" className="max-w-sm text-xs leading-relaxed text-muted">
-          Các trường có dấu * là bắt buộc. Thông tin chỉ dùng để phản hồi yêu cầu của bạn.
+        <p id="form-note" className="max-w-sm text-xs leading-relaxed text-ink-muted">
+          {t.note}
         </p>
         <Button type="submit" disabled={submitting} icon={submitting ? "none" : "arrow"} className="shrink-0">
           {submitting ? (
             <span className="inline-flex items-center gap-2">
-              <LoaderCircle aria-hidden className="size-4 animate-spin" /> Đang gửi…
+              <LoaderCircle aria-hidden className="size-4 animate-spin" /> {t.submitting}
             </span>
           ) : (
-            "Gửi yêu cầu"
+            t.submit
           )}
         </Button>
       </div>
 
       <div role="status" aria-live="polite" className="empty:hidden">
         {status.kind === "demo" ? (
-          <Notice tone="info" title="Đã ghi nhận trên trình duyệt — đây là bản demo.">
-            Thông tin <strong>chưa được gửi</strong> tới Eco Biochar vì trang chưa kết nối hệ thống tiếp nhận. Kênh liên
-            hệ chính thức đang được cập nhật.
+          <Notice tone="info" title={t.demoTitle}>
+            {t.demoBody}
           </Notice>
         ) : status.kind === "sent" ? (
-          <Notice tone="success" title="Cảm ơn bạn! Yêu cầu đã được gửi.">
-            Đội ngũ Eco Biochar sẽ phản hồi qua email bạn cung cấp.
+          <Notice tone="success" title={t.sentTitle}>
+            {t.sentBody}
           </Notice>
         ) : status.kind === "error" ? (
-          <Notice tone="error" title="Chưa gửi được yêu cầu.">
-            Vui lòng thử lại sau ít phút.
+          <Notice tone="error" title={t.errorTitle}>
+            {t.errorBody}
           </Notice>
         ) : null}
       </div>
     </form>
   );
 }
+
+type ControlAria = {
+  "aria-invalid": boolean;
+  "aria-required"?: boolean;
+  "aria-describedby"?: string;
+};
 
 function Field({
   id,
@@ -259,21 +260,18 @@ function Field({
   const errorId = `${id}-error`;
   const hintId = useId();
   return (
-    <div
-      className="group/field flex flex-col gap-2 [&_input,&_select,&_textarea]:w-full [&_input,&_select,&_textarea]:rounded-[3px] [&_input,&_select,&_textarea]:border [&_input,&_select,&_textarea]:bg-white/70 [&_input,&_select,&_textarea]:px-4 [&_input,&_select,&_textarea]:text-base [&_input,&_select,&_textarea]:text-char [&_input,&_select,&_textarea]:transition-colors [&_input,&_select,&_textarea]:outline-none [&_input,&_select]:min-h-12 [&_select]:appearance-none [&_select]:pr-10 [&_textarea]:py-3 [&_textarea]:leading-relaxed [&_:is(input,select,textarea):focus]:border-forest [&_:is(input,select,textarea):focus]:bg-white [&_:is(input,select,textarea):focus]:ring-2 [&_:is(input,select,textarea):focus]:ring-mint/40"
-      data-invalid={error ? "" : undefined}
-    >
-      <label htmlFor={id} className="flex items-baseline justify-between text-sm font-medium text-forest-ink">
+    <div className="flex flex-col gap-2 [&_input,&_select,&_textarea]:w-full [&_input,&_select,&_textarea]:rounded-[3px] [&_input,&_select,&_textarea]:border [&_input,&_select,&_textarea]:bg-surface-raised [&_input,&_select,&_textarea]:px-4 [&_input,&_select,&_textarea]:text-base [&_input,&_select,&_textarea]:text-ink [&_input,&_select,&_textarea]:transition-colors [&_input,&_select,&_textarea]:outline-none [&_input,&_select]:min-h-12 [&_select]:appearance-none [&_select]:pr-10 [&_textarea]:py-3 [&_textarea]:leading-relaxed [&_textarea]:placeholder:text-ink-muted/70 [&_:is(input,select,textarea):focus]:border-accent [&_:is(input,select,textarea):focus]:ring-2 [&_:is(input,select,textarea):focus]:ring-mint/40">
+      <label htmlFor={id} className="flex items-baseline justify-between text-sm font-medium text-heading">
         <span>
           {label}
           {required ? (
-            <span aria-hidden className="ml-0.5 text-earth">
+            <span aria-hidden className="ml-0.5 text-eyebrow">
               *
             </span>
           ) : null}
         </span>
         {hint ? (
-          <span id={hintId} className="text-xs font-normal text-muted">
+          <span id={hintId} className="text-xs font-normal text-ink-muted">
             {hint}
           </span>
         ) : null}
@@ -281,8 +279,8 @@ function Field({
       <div
         className={`relative ${
           error
-            ? "[&_:is(input,select,textarea)]:border-[#b3261e] [&_:is(input,select,textarea)]:bg-[#fdf3f2]"
-            : "[&_:is(input,select,textarea)]:border-char/15"
+            ? "[&_:is(input,select,textarea)]:border-danger [&_:is(input,select,textarea)]:bg-danger-bg"
+            : "[&_:is(input,select,textarea)]:border-ink/15"
         }`}
       >
         {children({
@@ -293,12 +291,12 @@ function Field({
         {select ? (
           <ChevronDown
             aria-hidden
-            className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-forest"
+            className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-accent"
           />
         ) : null}
       </div>
       {error ? (
-        <p id={errorId} className="flex items-center gap-1.5 text-sm text-[#b3261e]">
+        <p id={errorId} className="flex items-center gap-1.5 text-sm text-danger">
           <TriangleAlert aria-hidden className="size-3.5 shrink-0" />
           {error}
         </p>
@@ -307,18 +305,8 @@ function Field({
   );
 }
 
-type ControlAria = {
-  "aria-invalid": boolean;
-  "aria-required"?: boolean;
-  "aria-describedby"?: string;
-};
-
 function Notice({ tone, title, children }: { tone: "info" | "success" | "error"; title: string; children: ReactNode }) {
-  const styles = {
-    info: "bg-soft text-forest-ink",
-    success: "bg-soft text-forest-ink",
-    error: "bg-[#fdf3f2] text-[#8c1d18]",
-  }[tone];
+  const styles = tone === "error" ? "bg-danger-bg text-danger" : "bg-tint text-tint-ink";
   const Icon = tone === "error" ? TriangleAlert : CheckCircle2;
   return (
     <div className={`mt-6 flex gap-3 rounded-[3px] p-4 text-sm leading-relaxed ${styles}`}>

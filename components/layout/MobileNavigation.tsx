@@ -3,14 +3,25 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
-import { brand, navItems, primaryCta } from "@/content/site";
+import type { Dictionary, Locale } from "@/content/types";
 import { Logo } from "@/components/ui/Logo";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LanguageSwitch } from "@/components/ui/LanguageSwitch";
+
+type Props = {
+  onDark: boolean;
+  locale: Locale;
+  common: Dictionary["common"];
+  nav: Dictionary["nav"];
+  cta: Dictionary["primaryCta"];
+  slogan: string;
+};
 
 /**
- * Full-screen menu for < lg. The panel is portalled to <body> because the
+ * Full-screen menu below xl. The panel is portalled to <body> because the
  * header uses backdrop-filter, which would otherwise contain fixed children.
  */
-export function MobileNavigation({ light }: { light: boolean }) {
+export function MobileNavigation({ onDark, locale, common, nav, cta, slogan }: Props) {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -45,7 +56,7 @@ export function MobileNavigation({ light }: { light: boolean }) {
         first.focus();
       }
     };
-    const onResize = () => window.innerWidth >= 1024 && close(false);
+    const onResize = () => window.innerWidth >= 1280 && close(false);
 
     document.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
@@ -57,16 +68,16 @@ export function MobileNavigation({ light }: { light: boolean }) {
   }, [open, close]);
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         ref={toggleRef}
         type="button"
         aria-expanded={open}
         aria-controls="mobile-nav"
-        aria-label="Mở menu"
+        aria-label={common.openMenu}
         onClick={() => setOpen(true)}
         className={`grid size-11 place-items-center rounded-[3px] transition-colors ${
-          light ? "text-cream hover:bg-cream/10" : "text-forest-ink hover:bg-forest/10"
+          onDark ? "text-cream hover:bg-cream/10" : "text-heading hover:bg-ink/5"
         }`}
       >
         <Menu className="size-6" strokeWidth={1.5} />
@@ -79,14 +90,14 @@ export function MobileNavigation({ light }: { light: boolean }) {
               ref={panelRef}
               role="dialog"
               aria-modal="true"
-              aria-label="Menu điều hướng"
-              className="grain fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-forest-ink text-cream"
+              aria-label={common.menuDialog}
+              className="grain fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-section-dark text-cream"
             >
               <div className="container-page flex h-[4.5rem] shrink-0 items-center justify-between">
-                <Logo tone="light" />
+                <Logo onDark />
                 <button
                   type="button"
-                  aria-label="Đóng menu"
+                  aria-label={common.closeMenu}
                   onClick={() => close()}
                   className="grid size-11 place-items-center rounded-[3px] text-cream hover:bg-cream/10"
                 >
@@ -94,9 +105,9 @@ export function MobileNavigation({ light }: { light: boolean }) {
                 </button>
               </div>
               <div className="container-page flex flex-1 flex-col pt-8 pb-10">
-                <nav aria-label="Điều hướng di động">
+                <nav aria-label={common.mobileNav}>
                   <ol className="divide-y divide-line-light border-y border-line-light">
-                    {navItems.map((item, i) => (
+                    {nav.map((item, i) => (
                       <li key={item.href}>
                         <a
                           href={item.href}
@@ -111,13 +122,17 @@ export function MobileNavigation({ light }: { light: boolean }) {
                   </ol>
                 </nav>
                 <a
-                  href={primaryCta.href}
+                  href={cta.href}
                   onClick={() => close(false)}
                   className="mt-10 inline-flex min-h-12 items-center justify-center rounded-[3px] bg-cream px-6 font-medium text-forest-ink transition-colors hover:bg-mint"
                 >
-                  {primaryCta.label}
+                  {cta.label}
                 </a>
-                <p className="mt-auto pt-12 font-display text-lg font-light text-cream/60 italic">{brand.slogan}</p>
+                <div className="mt-8 flex items-center justify-between border-t border-line-light pt-4">
+                  <LanguageSwitch locale={locale} label={common.languageLabel} />
+                  <ThemeToggle label={common.themeToggle} className="hover:bg-cream/10" />
+                </div>
+                <p className="mt-auto pt-12 font-display text-lg font-light text-cream/60 italic">{slogan}</p>
               </div>
             </div>,
             document.body,

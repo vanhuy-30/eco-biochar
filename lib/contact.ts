@@ -2,26 +2,6 @@ export type CustomerType = "farm" | "manufacturer" | "distributor" | "supplier" 
 export type InquiryType =
   "sample" | "specs" | "bulk" | "distribution" | "feedstock" | "product-chunk" | "product-powder" | "other";
 
-export const customerTypeOptions: { value: CustomerType; label: string }[] = [
-  { value: "farm", label: "Trang trại / Hợp tác xã" },
-  { value: "manufacturer", label: "Doanh nghiệp phân bón, giá thể, đất trồng" },
-  { value: "distributor", label: "Đại lý / Nhà phân phối" },
-  { value: "supplier", label: "Cơ sở chế biến dừa / Nhà cung cấp nguyên liệu" },
-  { value: "home", label: "Người làm vườn / Cá nhân" },
-  { value: "other", label: "Khác" },
-];
-
-export const inquiryTypeOptions: { value: InquiryType; label: string }[] = [
-  { value: "sample", label: "Yêu cầu mẫu thử" },
-  { value: "specs", label: "Thông số kỹ thuật" },
-  { value: "bulk", label: "Cung ứng số lượng lớn" },
-  { value: "distribution", label: "Hợp tác phân phối" },
-  { value: "feedstock", label: "Cung cấp nguyên liệu gáo dừa" },
-  { value: "product-chunk", label: "Tìm hiểu Biochar Chunk" },
-  { value: "product-powder", label: "Tìm hiểu Biochar Powder" },
-  { value: "other", label: "Khác" },
-];
-
 export type InquiryForm = {
   fullName: string;
   organization: string;
@@ -37,15 +17,25 @@ export type InquiryErrors = Partial<Record<keyof InquiryForm, string>>;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^\+?[0-9 .()-]{8,16}$/;
 
-export function validateInquiry(form: InquiryForm): InquiryErrors {
+export type ValidationMessages = {
+  fullName: string;
+  emailRequired: string;
+  emailInvalid: string;
+  phone: string;
+  customerType: string;
+  inquiryType: string;
+  message: string;
+};
+
+export function validateInquiry(form: InquiryForm, m: ValidationMessages): InquiryErrors {
   const errors: InquiryErrors = {};
-  if (form.fullName.trim().length < 2) errors.fullName = "Vui lòng nhập họ và tên.";
-  if (!form.email.trim()) errors.email = "Vui lòng nhập email.";
-  else if (!EMAIL_RE.test(form.email.trim())) errors.email = "Email chưa đúng định dạng, ví dụ: ten@congty.vn.";
-  if (form.phone.trim() && !PHONE_RE.test(form.phone.trim())) errors.phone = "Số điện thoại chưa hợp lệ (8–16 chữ số).";
-  if (!form.customerType) errors.customerType = "Vui lòng chọn nhóm khách hàng.";
-  if (!form.inquiryType) errors.inquiryType = "Vui lòng chọn nhu cầu liên hệ.";
-  if (form.message.trim().length < 10) errors.message = "Vui lòng mô tả nhu cầu (tối thiểu 10 ký tự).";
+  if (form.fullName.trim().length < 2) errors.fullName = m.fullName;
+  if (!form.email.trim()) errors.email = m.emailRequired;
+  else if (!EMAIL_RE.test(form.email.trim())) errors.email = m.emailInvalid;
+  if (form.phone.trim() && !PHONE_RE.test(form.phone.trim())) errors.phone = m.phone;
+  if (!form.customerType) errors.customerType = m.customerType;
+  if (!form.inquiryType) errors.inquiryType = m.inquiryType;
+  if (form.message.trim().length < 10) errors.message = m.message;
   return errors;
 }
 

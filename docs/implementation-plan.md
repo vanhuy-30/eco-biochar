@@ -181,3 +181,13 @@ Semantic landmarks (`header`, `nav`, `main`, `section[aria-labelledby]`, `footer
 6. Form validates in Vietnamese and states honestly that submissions are not sent in demo mode.
 7. Lint, typecheck and build pass.
 8. Reduced-motion users see no animation.
+
+## 16. Update — English and dark theme
+
+- **i18n:** `app/[lang]` with `generateStaticParams` (`vi`, `en`), dictionaries in `content/vi.ts` / `content/en.ts` typed by `content/types.ts`. Sections receive their slice of the dictionary as props, so client components never import the dictionaries directly. `proxy.ts` redirects `/` by `Accept-Language`. `hreflang` alternates and per-locale Open Graph are set in `generateMetadata`. Anchor IDs are shared across locales; the language switch keeps the current hash and does a full document load (a client transition re-renders `<html>` and would drop the theme attribute).
+- **Theme:** semantic tokens (`surface`, `ink`, `heading`, `accent`, `eyebrow`, `tint`, `kraft`, `section-dark`, `primary`, `danger`…) defined for `[data-theme="light"]` and `[data-theme="dark"]` in `globals.css`; brand-fixed colours (mint, cream, char, forest-ink) stay constant. An inline `<head>` script (Next's "preventing flash before hydration" pattern) resolves saved choice → system preference before paint. Icons in the toggle switch via a `dark:` custom variant, so markup is identical on server and client.
+
+## 17. Update — intro and hero motion
+
+- **Intro** (`components/layout/Intro.tsx`, styles in `globals.css`): mirrors the reference's sequence (line-art mark draws in, name/tagline rise from blur, loading rule, corner labels, skip button, upward wipe at ~2.3s). The boot script sets `html[data-intro]` before first paint: `on` for the first page of a session, `off` when already seen or when reduced motion is requested; the overlay is only displayed for `on`, so there is no flash either way.
+- **Hero entrance:** staggered rise/fade of eyebrow, headline phrases, copy, CTAs and facts; product image unveils upward, settles, then breathes slowly; orbit ring rotates; background glow drifts. Delays add `--hero-delay` (2.45s while the intro plays, 300ms after skipping, 0 otherwise). Everything ends in its normal state and is disabled under `prefers-reduced-motion`.

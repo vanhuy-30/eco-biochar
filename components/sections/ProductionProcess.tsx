@@ -1,25 +1,33 @@
 "use client";
 
 import { useRef, useState, type KeyboardEvent } from "react";
-import { processStages, type ProcessStage } from "@/content/process";
+import { Filter, FlaskConical, Flame, Package, Sprout, Truck, type LucideIcon } from "lucide-react";
+import type { Dictionary, ProcessStage } from "@/content/types";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-export function ProductionProcess() {
+/** One icon per stage, in the same order as `process.stages` in the dictionaries. */
+const stageIcons: LucideIcon[] = [Truck, Filter, Flame, FlaskConical, Package, Sprout];
+
+/** Track runs between the centres of the first and last of six columns (gap 1rem). */
+const TRACK_INSET = "calc((100% - 5rem) / 12)";
+
+export function ProductionProcess({ t }: { t: Dictionary["process"] }) {
+  const stages = t.stages;
   const [active, setActive] = useState(0);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
 
   const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>, i: number) => {
-    const last = processStages.length - 1;
+    const n = stages.length;
     const next =
       e.key === "ArrowRight" || e.key === "ArrowDown"
-        ? (i + 1) % processStages.length
+        ? (i + 1) % n
         : e.key === "ArrowLeft" || e.key === "ArrowUp"
-          ? (i - 1 + processStages.length) % processStages.length
+          ? (i - 1 + n) % n
           : e.key === "Home"
             ? 0
             : e.key === "End"
-              ? last
+              ? n - 1
               : null;
     if (next === null) return;
     e.preventDefault();
@@ -27,31 +35,41 @@ export function ProductionProcess() {
     buttons.current[next]?.focus();
   };
 
-  const current = processStages[active];
+  const current = stages[active];
 
   return (
-    <section id="quy-trinh" aria-labelledby="process-title" className="grain section-pad bg-forest-ink text-cream">
+    <section id="quy-trinh" aria-labelledby="process-title" className="grain section-pad bg-section-dark text-cream">
       <div className="container-page">
-        <SectionHeading
-          id="process-title"
-          index="03"
-          eyebrow="Quy trình tuần hoàn"
-          title="Từ gáo dừa"
-          accent="trở về với đất."
-          intro="Chín công đoạn sản xuất được nhóm thành sáu giai đoạn — từ thu gom nguyên liệu đến ứng dụng và phản hồi thực tế."
-          tone="dark"
-        />
+        <SectionHeading id="process-title" tone="dark" {...t} />
 
         <Reveal className="mt-16 lg:mt-24">
           <ol className="relative grid gap-0 lg:grid-cols-6 lg:gap-4">
+            {/* Desktop progress track: base line + mint fill up to the selected stage. */}
             <span
               aria-hidden
-              className="absolute top-[1.375rem] right-[8%] left-[8%] hidden h-px bg-line-light lg:block"
-            />
-            {processStages.map((stage, i) => {
+              className="absolute top-6 hidden h-px bg-line-light lg:block"
+              style={{ left: TRACK_INSET, right: TRACK_INSET }}
+            >
+              <span
+                className="absolute inset-y-0 left-0 bg-mint transition-[width] duration-700 ease-(--ease-out-soft)"
+                style={{ width: `${(active / (stages.length - 1)) * 100}%` }}
+              />
+            </span>
+            {stages.map((stage, i) => {
               const isActive = i === active;
+              const isDone = i < active;
+              const Icon = stageIcons[i] ?? Sprout;
               return (
-                <li key={stage.number} className="relative border-b border-line-light lg:border-0">
+                <li key={stage.number} className="relative">
+                  {/* Mobile timeline segment, from this circle's centre down to the next one. */}
+                  {i < stages.length - 1 ? (
+                    <span
+                      aria-hidden
+                      className={`absolute top-11 bottom-[-2.75rem] left-6 w-px transition-colors duration-500 lg:hidden ${
+                        isDone ? "bg-mint" : "bg-line-light"
+                      }`}
+                    />
+                  ) : null}
                   <button
                     ref={(el) => {
                       buttons.current[i] = el;
@@ -64,15 +82,18 @@ export function ProductionProcess() {
                     className="group flex w-full items-center gap-5 py-5 text-left lg:flex-col lg:items-center lg:gap-4 lg:py-0 lg:text-center"
                   >
                     <span
-                      className={`relative z-10 grid size-11 shrink-0 place-items-center rounded-full border text-sm font-semibold transition-colors duration-300 ${
+                      className={`relative z-10 grid size-12 shrink-0 place-items-center rounded-full border transition-[background-color,border-color,color,transform] duration-300 ${
                         isActive
-                          ? "border-mint bg-mint text-forest-ink"
-                          : "border-cream/30 bg-forest-ink text-cream/80 group-hover:border-mint group-hover:text-mint"
+                          ? "scale-110 border-mint bg-mint text-forest-ink"
+                          : isDone
+                            ? "border-mint/70 bg-section-dark text-mint"
+                            : "border-cream/30 bg-section-dark text-cream/75 group-hover:border-mint group-hover:text-mint"
                       }`}
                     >
-                      {stage.number}
+                      <Icon aria-hidden className="size-5" strokeWidth={1.6} />
                     </span>
                     <span className="flex flex-col gap-1">
+                      <span className="text-[0.7rem] font-semibold tracking-[0.16em] text-mint/70">{stage.number}</span>
                       <span
                         className={`font-display text-lg leading-snug transition-colors lg:text-[1.1rem] ${
                           isActive ? "text-cream" : "text-cream/70 group-hover:text-cream"
@@ -84,7 +105,7 @@ export function ProductionProcess() {
                     </span>
                   </button>
                   {isActive ? (
-                    <div className="pb-6 pl-16 lg:hidden">
+                    <div className="pb-6 pl-[4.25rem] lg:hidden">
                       <StageDetail stage={stage} />
                     </div>
                   ) : null}
@@ -113,10 +134,7 @@ export function ProductionProcess() {
           </div>
         </div>
 
-        <p className="mt-12 max-w-3xl text-sm leading-relaxed text-cream/50">
-          Quy trình và thông số được xây dựng trong giai đoạn pilot; nhiệt độ, độ ẩm và các chỉ tiêu chất lượng sẽ tiếp
-          tục được chuẩn hóa qua các lô sản xuất thực tế.
-        </p>
+        <p className="mt-12 max-w-3xl text-sm leading-relaxed text-cream/50">{t.disclaimer}</p>
       </div>
     </section>
   );
