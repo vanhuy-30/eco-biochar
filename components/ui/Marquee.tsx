@@ -15,7 +15,7 @@ export function Marquee({ items }: { items: string[] }) {
   );
 
   return (
-    <div className="overflow-hidden border-y border-line-light bg-forest-ink py-5">
+    <div className="overflow-hidden border-y border-line-light bg-section-dark py-5">
       <p className="sr-only">{items.join(" · ")}</p>
       <div className="flex w-max animate-marquee motion-reduce:animate-none" aria-hidden>
         {row(true)}

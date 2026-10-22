@@ -2,34 +2,34 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { faqItems } from "@/content/faq";
+import type { Dictionary } from "@/content/types";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function FAQSection() {
+export function FAQSection({ t }: { t: Dictionary["faq"] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="hoi-dap" aria-labelledby="faq-title" className="section-pad bg-cream">
+    <section id="hoi-dap" aria-labelledby="faq-title" className="section-pad bg-surface">
       <div className="container-page grid gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-4">
-          <p className="eyebrow flex items-center gap-3 text-earth">
-            <span aria-hidden className="h-px w-8 bg-earth/50" />
-            07 / Hỏi đáp
+          <p className="eyebrow flex items-center gap-3 text-eyebrow">
+            <span aria-hidden className="h-px w-8 bg-eyebrow/50" />
+            {t.index} / {t.eyebrow}
           </p>
-          <h2 id="faq-title" className="mt-6 font-display text-headline font-medium tracking-[-0.02em] text-forest-ink">
-            Câu hỏi <span className="font-light text-forest italic">thường gặp.</span>
+          <h2 id="faq-title" className="mt-6 font-display text-headline font-medium tracking-[-0.02em] text-heading">
+            {t.title} <span className="font-light text-accent">{t.accent}</span>
           </h2>
-          <p className="mt-6 max-w-sm leading-relaxed text-muted">
-            Chưa thấy câu trả lời bạn cần? Gửi câu hỏi qua{" "}
-            <a href="#lien-he" className="text-forest underline underline-offset-4 hover:text-forest-deep">
-              biểu mẫu liên hệ
+          <p className="mt-6 max-w-sm leading-relaxed text-ink-muted">
+            {t.introBefore}{" "}
+            <a href="#lien-he" className="text-accent underline underline-offset-4 hover:opacity-80">
+              {t.introLink}
             </a>
             .
           </p>
         </Reveal>
 
         <div className="border-t border-line lg:col-span-8">
-          {faqItems.map((item, i) => {
+          {t.items.map((item, i) => {
             const expanded = open === i;
             const id = `faq-${i}`;
             return (
@@ -43,13 +43,13 @@ export function FAQSection() {
                     onClick={() => setOpen(expanded ? null : i)}
                     className="group flex w-full items-center justify-between gap-6 py-6 text-left"
                   >
-                    <span className="font-display text-xl text-forest-ink transition-colors group-hover:text-forest md:text-2xl">
+                    <span className="font-display text-xl text-heading transition-colors group-hover:text-accent md:text-2xl">
                       {item.question}
                     </span>
                     <span
                       aria-hidden
                       className={`grid size-10 shrink-0 place-items-center rounded-full border transition-[transform,background-color,border-color] duration-500 ease-(--ease-out-soft) ${
-                        expanded ? "rotate-45 border-forest bg-forest text-cream" : "border-char/20 text-forest"
+                        expanded ? "rotate-45 border-primary bg-primary text-on-primary" : "border-ink/20 text-accent"
                       }`}
                     >
                       <Plus className="size-4" strokeWidth={1.75} />
@@ -66,7 +66,7 @@ export function FAQSection() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-2xl pr-14 pb-7 leading-relaxed text-char/75">{item.answer}</p>
+                    <p className="max-w-2xl pr-14 pb-7 leading-relaxed text-ink/75">{item.answer}</p>
                   </div>
                 </div>
               </div>

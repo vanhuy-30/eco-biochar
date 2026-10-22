@@ -1,5 +1,7 @@
 # Content inventory
 
+English copy (`content/en.ts`) is a translation of the Vietnamese rows below and carries the same status; it has not been reviewed by a native speaker.
+
 Legend — **PDF**: stated in the report *Tiểu luận YTKN – Nhóm 5* (page numbers are PDF page / printed page). **Biên soạn**: new marketing copy written for the site, paraphrasing report positions without adding claims. **Cần xác nhận**: needs confirmation from the team before launch.
 
 | Section | Copy / data | Status | Source |

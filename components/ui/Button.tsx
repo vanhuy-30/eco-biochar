@@ -7,11 +7,11 @@ const base =
   "group inline-flex items-center justify-center gap-3 font-medium whitespace-nowrap tracking-[0.01em] transition-[background-color,color,border-color,transform] duration-300 ease-(--ease-out-soft) disabled:pointer-events-none disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
-  solid: "min-h-12 px-6 rounded-[3px] bg-forest text-cream hover:bg-forest-deep active:translate-y-px",
+  solid: "min-h-12 px-6 rounded-[3px] bg-primary text-on-primary hover:bg-primary-hover active:translate-y-px",
   light: "min-h-12 px-6 rounded-[3px] bg-cream text-forest-ink hover:bg-soft active:translate-y-px",
-  outline: "min-h-12 px-6 rounded-[3px] border border-char/25 text-char hover:border-forest hover:text-forest",
+  outline: "min-h-12 px-6 rounded-[3px] border border-ink/25 text-ink hover:border-accent hover:text-accent",
   "outline-light": "min-h-12 px-6 rounded-[3px] border border-cream/30 text-cream hover:border-mint hover:text-mint",
-  text: "min-h-11 text-forest underline-offset-[6px] hover:underline",
+  text: "min-h-11 text-accent underline-offset-[6px] hover:underline",
   "text-light": "min-h-11 text-cream underline-offset-[6px] hover:text-mint",
 };
 
