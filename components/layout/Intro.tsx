@@ -11,7 +11,7 @@ const d = (seconds: number) => ({ "--d": `${seconds}s` }) as CSSProperties;
  * but only displayed when the boot script sets html[data-intro="on"] (first page
  * of a session, motion allowed), so it covers the page from the first paint.
  */
-export function Intro({ t, slogan }: { t: Dictionary["intro"]; slogan: string }) {
+export function Intro({ t, company, slogan }: { t: Dictionary["intro"]; company: string; slogan: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
   const finish = useCallback(() => document.documentElement.setAttribute("data-intro", "done"), []);
@@ -116,10 +116,14 @@ export function Intro({ t, slogan }: { t: Dictionary["intro"]; slogan: string })
           ))}
         </svg>
 
-        <p className="intro-copy font-display text-[clamp(2.75rem,7vw,5.25rem)] leading-tight font-medium tracking-[-0.04em]">
-          Eco Biochar<span className="text-mint">.</span>
+        <p className="intro-copy font-display text-[clamp(1.9rem,5.4vw,3.9rem)] leading-tight font-medium tracking-[-0.035em]">
+          {company}
+          <span className="text-mint">.</span>
         </p>
-        <p className="intro-copy mt-3 text-sm tracking-[0.08em] text-cream/75" style={d(0.8)}>
+        <p className="intro-copy eyebrow mt-2 text-mint" style={d(0.7)}>
+          {t.product}
+        </p>
+        <p className="intro-copy mt-3 text-sm tracking-[0.08em] text-cream/75" style={d(0.85)}>
           {slogan}
         </p>
         <div className="intro-rule mt-8 h-px w-24 overflow-hidden bg-coconut/20">

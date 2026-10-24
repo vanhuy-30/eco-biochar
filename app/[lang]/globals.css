@@ -21,7 +21,7 @@
   --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
 
-  --text-display: clamp(2.6rem, 1.4rem + 5vw, 6.25rem);
+  --text-display: clamp(2.4rem, 1.3rem + 3.6vw, 4.75rem);
   --text-display--line-height: 1.02;
   --text-headline: clamp(2.1rem, 1.35rem + 3vw, 4.25rem);
   --text-headline--line-height: 1.06;
@@ -347,7 +347,7 @@ html[data-intro="on"] {
   animation: hero-rule 0.9s var(--ease-out-soft) var(--hero-delay) both;
 }
 .hero-unveil {
-  animation: hero-unveil 1.4s cubic-bezier(0.76, 0, 0.24, 1) calc(var(--hero-delay) + 250ms) both;
+  animation: hero-unveil 1.4s cubic-bezier(0.76, 0, 0.24, 1) calc(var(--hero-delay) + 250ms + var(--d, 0ms)) both;
 }
 /* Settle into place, then breathe slowly, like the reference hero photo. */
 .hero-breathe {

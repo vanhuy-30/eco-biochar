@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
     title: meta.title,
     description: meta.description,
-    applicationName: "Eco Biochar",
+    applicationName: "Agrichar Vĩnh Long",
     authors: [{ name: "Công ty Cổ phần Agrichar Vĩnh Long" }],
     icons: { icon: "/icon.png" },
     alternates: { languages: { vi: "/vi", en: "/en", "x-default": "/vi" } },
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
       type: "website",
       locale: lang === "vi" ? "vi_VN" : "en_US",
       alternateLocale: lang === "vi" ? "en_US" : "vi_VN",
-      siteName: "Eco Biochar",
+      siteName: "Agrichar Vĩnh Long — Eco Biochar",
       images: [{ url: "/images/packaging-duo.jpg", width: 1420, height: 847, alt: meta.ogAlt }],
     },
     twitter: {

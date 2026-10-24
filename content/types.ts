@@ -65,12 +65,26 @@ export type Dictionary = {
     languageLabel: string;
     close: string;
   };
-  intro: { label: string; cornerTop: string; cornerBottom: string; skip: string };
-  brand: { slogan: string; description: string; logoAlt: string; logoNote: string };
+  intro: { label: string; product: string; cornerTop: string; cornerBottom: string; skip: string };
+  brand: {
+    /** Company name as it appears in the logo and headings, e.g. "Agrichar Vĩnh Long". */
+    company: string;
+    /** Full legal name, e.g. "Công ty Cổ phần Agrichar Vĩnh Long". */
+    legalName: string;
+    /** Product line name ("Eco Biochar"); always shown smaller than the company. */
+    product: string;
+    slogan: string;
+    description: string;
+    logoAlt: string;
+    logoNote: string;
+  };
   nav: { label: string; href: `#${string}` }[];
   primaryCta: { label: string; href: `#${string}` };
   hero: {
-    eyebrow: string;
+    /** Small line above the company name, e.g. "Công ty Cổ phần". */
+    companyLabel: string;
+    /** Line under the company name introducing the product line. */
+    productLine: string;
     title: string;
     accent: string;
     body: string;
@@ -79,16 +93,24 @@ export type Dictionary = {
     facts: { label: string; value: string }[];
     imageCaption: string;
     imageNote: string;
-    imageAlt: string;
     scrollCue: string;
     marquee: string[];
   };
   story: SectionCopy & {
     logoCaption: string;
+    statPrefix: string;
     statNumber: string;
     statUnit: string;
     statLabel: string;
-    statSource: string;
+    /** Citation for the statistic; the whole block links to the original article. */
+    statSource: {
+      label: string;
+      title: string;
+      meta: string;
+      /** Screen-reader hint that the link opens a new tab. */
+      openHint: string;
+      url: string;
+    };
     points: { title: string; body: string }[];
     chainLabel: string;
     chain: string[];
@@ -118,7 +140,12 @@ export type Dictionary = {
       prefill: string;
     };
   };
-  process: SectionCopy & { stages: ProcessStage[]; disclaimer: string };
+  process: SectionCopy & {
+    stages: ProcessStage[];
+    outputsLabel: string;
+    outputs: string[];
+    disclaimer: string;
+  };
   applications: SectionCopy & {
     tablistLabel: string;
     formatLabel: string;
@@ -199,6 +226,8 @@ export type Dictionary = {
     contactHeading: string;
     footerNav: string;
     copyright: string;
+    /** Student team credit shown under the copyright line. */
+    team: string;
     disclaimer: string;
   };
 };

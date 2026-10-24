@@ -23,7 +23,7 @@ export function ProductShowcase({ t, close }: { t: Copy; close: string }) {
 
         <div className="mt-16 grid gap-8 lg:mt-24 lg:grid-cols-12 lg:gap-10">
           {t.items.map((product, i) => (
-            <Reveal key={product.id} delay={i * 120} className={i === 0 ? "lg:col-span-7" : "lg:col-span-5 lg:mt-40"}>
+            <Reveal key={product.id} delay={i * 120} className={i === 0 ? "lg:col-span-6" : "lg:col-span-6 lg:mt-28"}>
               <ProductPanel product={product} t={t} onOpen={() => setOpenId(product.id)} />
             </Reveal>
           ))}
@@ -47,15 +47,14 @@ function ProductPanel({ product, t, onOpen }: { product: Product; t: Copy; onOpe
       className={`grain group overflow-hidden rounded-[4px] ${dark ? "bg-char text-cream" : "bg-kraft text-kraft-ink"}`}
     >
       <div className="relative overflow-hidden">
+        {/* Natural aspect ratio: the whole bag is always visible, never cropped. */}
         <Image
           src={image.src}
           width={image.width}
           height={image.height}
           alt={t.imageAlt[product.id]}
-          sizes="(min-width: 1024px) 50vw, 100vw"
-          className={`w-full object-cover object-[50%_30%] transition-transform duration-[1.2s] ease-(--ease-out-soft) group-hover:scale-[1.03] ${
-            dark ? "aspect-[4/3.6]" : "aspect-[4/4.6]"
-          }`}
+          sizes="(min-width: 1320px) 620px, (min-width: 1024px) 46vw, 100vw"
+          className="h-auto w-full transition-transform duration-[1.2s] ease-(--ease-out-soft) group-hover:scale-[1.02]"
         />
         <span
           className={`eyebrow absolute top-5 left-5 rounded-[2px] px-2.5 py-1.5 ${dark ? "bg-char/80 text-mint" : "bg-cream/85 text-forest"}`}

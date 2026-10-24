@@ -1,11 +1,12 @@
+import { contactInfo } from "./contact-info";
 import type { Dictionary } from "./types";
 
 /** Vietnamese copy. Sources per item are listed in docs/content-inventory.md. */
 export const vi: Dictionary = {
   meta: {
-    title: "Eco Biochar — Than sinh học tuần hoàn từ gáo dừa",
+    title: "Agrichar Vĩnh Long — Eco Biochar, than sinh học từ gáo dừa",
     description:
-      "Eco Biochar chuyển hóa gáo dừa từ Bến Tre và Đồng bằng sông Cửu Long thành than sinh học dạng cục và dạng bột cho nông nghiệp. Tái sinh giá trị – Xanh hóa nông nghiệp.",
+      "Công ty Cổ phần Agrichar Vĩnh Long sản xuất Eco Biochar — than sinh học dạng cục và dạng bột từ gáo dừa Bến Tre và Đồng bằng sông Cửu Long. Tái sinh giá trị – Xanh hóa nông nghiệp.",
     ogAlt: "Bao bì Biochar Chunk và Biochar Powder của AGRICHAR VĨNH LONG",
   },
   common: {
@@ -23,15 +24,19 @@ export const vi: Dictionary = {
     close: "Đóng",
   },
   intro: {
-    label: "Giới thiệu Eco Biochar",
+    label: "Giới thiệu Agrichar Vĩnh Long",
+    product: "Dòng sản phẩm Eco Biochar",
     cornerTop: "Việt Nam · Than sinh học tuần hoàn",
     cornerBottom: "Gáo dừa → Biochar",
     skip: "Bỏ qua intro",
   },
   brand: {
+    company: "Agrichar Vĩnh Long",
+    legalName: "Công ty Cổ phần Agrichar Vĩnh Long",
+    product: "Eco Biochar",
     slogan: "Tái sinh giá trị – Xanh hóa nông nghiệp",
     description:
-      "Eco Biochar chuyển hóa gáo dừa – phế phụ phẩm từ các cơ sở chế biến dừa tại Bến Tre và Đồng bằng sông Cửu Long – thành than sinh học phục vụ nông nghiệp.",
+      "Agrichar Vĩnh Long phát triển Eco Biochar — than sinh học từ gáo dừa, phế phụ phẩm của các cơ sở chế biến dừa tại Bến Tre và Đồng bằng sông Cửu Long — phục vụ nông nghiệp.",
     logoAlt: "Logo AGRICHAR VĨNH LONG",
     logoNote:
       "Logo AGRICHAR VĨNH LONG: mầm cây lớn lên từ than sinh học trong lòng gáo dừa, bao quanh bởi vòng tuần hoàn.",
@@ -45,10 +50,12 @@ export const vi: Dictionary = {
   ],
   primaryCta: { label: "Hợp tác cùng chúng tôi", href: "#hop-tac" },
   hero: {
-    eyebrow: "Than sinh học từ gáo dừa · Đồng bằng sông Cửu Long",
-    title: "Tái sinh giá trị từ gáo dừa.",
-    accent: "Nuôi dưỡng tương lai xanh.",
-    body: "Eco Biochar chuyển hóa phế phụ phẩm nông nghiệp thành than sinh học, hướng đến những giải pháp sử dụng tài nguyên hiệu quả hơn cho nông nghiệp.",
+    companyLabel: "Công ty Cổ phần",
+    productLine: "Dòng sản phẩm Eco Biochar · Than sinh học từ gáo dừa",
+    // \u00a0 keeps "giá trị" and "gáo dừa" from breaking across lines.
+    title: "Tái sinh giá\u00a0trị từ gáo\u00a0dừa.",
+    accent: "Nuôi dưỡng tương\u00a0lai xanh.",
+    body: "Agrichar Vĩnh Long chuyển hóa phế phụ phẩm nông nghiệp thành than sinh học Eco Biochar, hướng đến những giải pháp sử dụng tài nguyên hiệu quả hơn cho nông nghiệp.",
     ctaPrimary: "Khám phá sản phẩm",
     ctaSecondary: "Hợp tác cùng chúng tôi",
     facts: [
@@ -57,25 +64,37 @@ export const vi: Dictionary = {
     ],
     imageCaption: "Biochar Chunk & Biochar Powder",
     imageNote: "Thiết kế bao bì định hướng",
-    imageAlt:
-      "Thiết kế bao bì Biochar Chunk và Biochar Powder của AGRICHAR VĨNH LONG đặt cạnh gáo dừa và than sinh học",
     scrollCue: "Cuộn để khám phá",
-    marquee: ["Tái sinh giá trị", "Xanh hóa nông nghiệp", "Biochar Chunk", "Biochar Powder", "Từ gáo dừa Bến Tre"],
+    marquee: [
+      "Agrichar Vĩnh Long",
+      "Tái sinh giá trị",
+      "Xanh hóa nông nghiệp",
+      "Biochar Chunk",
+      "Biochar Powder",
+      "Từ gáo dừa Bến Tre",
+    ],
   },
   story: {
     index: "01",
-    eyebrow: "Câu chuyện Eco Biochar",
+    eyebrow: "Câu chuyện Agrichar Vĩnh Long",
     title: "Mọi vòng tuần hoàn",
     accent: "bắt đầu từ thứ bị bỏ lại.",
     intro:
-      "Eco Biochar là dự án của Công ty Cổ phần Agrichar Vĩnh Long, sản xuất than sinh học từ phế phụ phẩm nông nghiệp theo định hướng kinh tế tuần hoàn.",
+      "Công ty Cổ phần Agrichar Vĩnh Long phát triển Eco Biochar — than sinh học từ phế phụ phẩm nông nghiệp, theo định hướng kinh tế tuần hoàn.",
     logoCaption:
       "Logo AGRICHAR VĨNH LONG: mầm cây lớn lên từ than sinh học trong lòng gáo dừa, bao quanh bởi vòng tuần hoàn.",
+    statPrefix: "Trên",
     statNumber: "156,8",
     statUnit: "triệu tấn",
     statLabel:
-      "phụ phẩm nông nghiệp phát sinh tại Việt Nam năm 2020 — một nguồn sinh khối có thể được chuyển hóa thay vì bỏ đi.",
-    statSource: "Nguồn: Báo Điện tử Chính phủ (2021), dẫn số liệu Tổng cục Thống kê.",
+      "là tổng khối lượng phụ phẩm nông nghiệp của cả nước năm 2020 theo Tổng cục Thống kê — một nguồn sinh khối có thể được chuyển hóa thay vì bỏ đi.",
+    statSource: {
+      label: "Nguồn trích dẫn",
+      title: "Phụ phẩm nông nghiệp: Nguồn tài nguyên đang bị lãng phí",
+      meta: "Báo Điện tử Chính phủ (Chinhphu.vn), 10/09/2021 · Số liệu của Tổng cục Thống kê, năm 2020",
+      openHint: "mở bài báo gốc trong tab mới",
+      url: "https://baochinhphu.vn/phu-pham-nong-nghiep-nguon-tai-nguyen-dang-bi-lang-phi-102300165.htm",
+    },
     points: [
       {
         title: "Một nguồn tài nguyên chưa được khai thác tối ưu",
@@ -198,78 +217,111 @@ export const vi: Dictionary = {
     eyebrow: "Quy trình tuần hoàn",
     title: "Từ gáo dừa",
     accent: "trở về với đất.",
-    intro:
-      "Chín công đoạn sản xuất được nhóm thành sáu giai đoạn — từ thu gom nguyên liệu đến ứng dụng và phản hồi thực tế.",
+    intro: "Chín công đoạn từ thu gom gáo dừa đến đóng gói và phân phối, theo quy trình tổng quát của dự án.",
     stages: [
       {
         number: "01",
         title: "Thu gom gáo dừa",
         keyword: "Nguồn nguyên liệu",
         summary:
-          "Gáo dừa được thu gom từ cơ sở chế biến dừa, hợp tác xã và nông hộ tại Bến Tre và Đồng bằng sông Cửu Long.",
+          "Thu gom phế phụ phẩm gáo dừa từ hộ nông dân, hợp tác xã và cơ sở chế biến dừa tại Bến Tre và Đồng bằng sông Cửu Long.",
         steps: [
-          "Liên kết nguồn cung theo cụm vùng nguyên liệu",
-          "Đánh giá sản lượng, độ ẩm, tạp chất và khoảng cách vận chuyển",
+          "Chủ động nguồn nguyên liệu đầu vào tương đối ổn định cho sản xuất",
+          "Đánh giá sản lượng, độ ẩm, tạp chất và khoảng cách vận chuyển trước khi chọn nhà cung cấp",
+          "Định hướng giảm lượng sinh khối bị đốt bỏ",
         ],
       },
       {
         number: "02",
-        title: "Sơ chế nguyên liệu",
-        keyword: "Phân loại · Băm · Sấy",
-        summary: "Nguyên liệu được phân loại, làm sạch, băm sơ bộ cho đồng đều và sấy giảm độ ẩm trước khi nhiệt phân.",
-        steps: [
-          "Loại bỏ đất, đá, kim loại và tạp chất không phù hợp",
-          "Băm / nghiền sơ bộ để kích thước đồng đều hơn",
-          "Sấy khô, định hướng tận dụng nhiệt dư của hệ thống",
-        ],
+        title: "Phân loại và làm sạch",
+        keyword: "Kiểm soát đầu vào",
+        summary: "Loại bỏ tạp chất vô cơ như đất, đá, kim loại, rác thải nhựa và các tạp chất có hại.",
+        steps: ["Bảo vệ hệ thống máy băm/nghiền", "Giữ độ tinh khiết của sản phẩm Biochar", "Bảo đảm an toàn vận hành"],
       },
       {
         number: "03",
-        title: "Nhiệt phân hạn chế oxy",
+        title: "Băm, nghiền sơ bộ",
+        keyword: "Đồng nhất kích thước",
+        summary: "Gáo dừa sau khi làm sạch được đưa vào máy băm/nghiền để điều chỉnh về kích thước đồng đều.",
+        steps: [
+          "Giúp quá trình sấy khô diễn ra nhanh hơn",
+          "Giúp nhiệt truyền đều trong lò nhiệt phân",
+          "Kích thước nghiền sơ bộ điều chỉnh linh hoạt theo độ ẩm từng lô",
+        ],
+      },
+      {
+        number: "04",
+        title: "Sấy khô nguyên liệu",
+        keyword: "Giảm độ ẩm",
+        summary: "Giảm độ ẩm nguyên liệu xuống mức tiêu chuẩn (thường dưới 15–20%) trước khi đưa vào lò nhiệt phân.",
+        steps: [
+          "Độ ẩm cao làm tốn năng lượng gia nhiệt và giảm hiệu suất nhiệt phân",
+          "Định hướng tận dụng nhiệt dư từ hệ thống nhiệt phân để sấy",
+          "Giúp tiết kiệm nhiên liệu đầu vào",
+        ],
+        highlight: "Độ ẩm < 15–20%",
+      },
+      {
+        number: "05",
+        title: "Nhiệt phân thiếu oxy",
         keyword: "Công đoạn trung tâm",
         summary:
-          "Gáo dừa khô được gia nhiệt trong lò kín, điều kiện hạn chế oxy, chuyển hóa thành vật liệu rắn giàu carbon.",
+          "Gáo dừa khô được đưa vào lò kín và gia nhiệt trong điều kiện yếm khí, tạo ra than sinh học giàu carbon cố định.",
         steps: [
           "Gia nhiệt trong khoảng 400–600°C theo phương án của dự án",
-          "Định hướng thu hồi dòng khí nhiệt phân để cấp nhiệt lại cho hệ thống",
-          "Làm nguội có kiểm soát để bảo đảm an toàn",
+          "Định hướng thu hồi dòng khí nhiệt phân (syngas) và đốt tuần hoàn để cấp nhiệt lại cho lò sấy và lò nhiệt phân",
+          "Đây là công đoạn quyết định chất lượng Biochar",
         ],
         highlight: "400–600°C",
       },
       {
-        number: "04",
-        title: "Xử lý và phân loại",
-        keyword: "Nghiền · Sàng · QC",
-        summary: "Biochar được nghiền, sàng thành hai quy cách và kiểm tra chất lượng theo từng lô.",
+        number: "06",
+        title: "Làm nguội an toàn",
+        keyword: "Kiểm soát an toàn",
+        summary:
+          "Biochar sau khi ra khỏi lò nhiệt phân có nhiệt độ rất cao và dễ tự bốc cháy khi tiếp xúc đột ngột với oxy trong không khí.",
         steps: [
-          "Tạo hai quy cách: dạng cục/mảnh và dạng nghiền",
-          "Kiểm tra theo lô: độ ẩm, carbon cố định, tro, pH, độ xốp, kích thước hạt",
-          "Ghi nhận dữ liệu lô để so sánh và truy xuất",
+          "Làm nguội có kiểm soát: băng tải giải nhiệt hoặc tưới ẩm nhẹ",
+          "Hạn chế nguy cơ cháy âm ỉ, bảo đảm an toàn lao động",
+          "Giữ ổn định cấu trúc carbon của sản phẩm",
         ],
       },
       {
-        number: "05",
+        number: "07",
+        title: "Nghiền, sàng, phân loại",
+        keyword: "Hai quy cách",
+        summary: "Biochar thô sau khi làm nguội được nghiền, sàng và phân loại thành hai quy cách thương mại chính.",
+        steps: [
+          "Dạng cục/mảnh: giữ cấu trúc xốp tự nhiên, dành cho trang trại cải tạo đất",
+          "Dạng nghiền: hạt nhỏ, đồng nhất, dành cho doanh nghiệp phân bón, giá thể và đất sạch",
+        ],
+      },
+      {
+        number: "08",
+        title: "Kiểm định chất lượng (QC)",
+        keyword: "Theo từng lô",
+        summary:
+          "Mỗi lô sản phẩm được kiểm định các chỉ tiêu kỹ thuật cốt lõi trước khi đóng gói (theo định hướng tiêu chuẩn IBI).",
+        steps: [
+          "Độ ẩm, tỷ lệ carbon cố định, hàm lượng tro",
+          "Độ pH, độ xốp, kích thước hạt",
+          "Ghi nhận dữ liệu theo lô để bảo đảm đồng đều và tạo niềm tin với khách hàng B2B",
+        ],
+      },
+      {
+        number: "09",
         title: "Đóng gói và phân phối",
         keyword: "B2B · Đại lý · Trực tuyến",
-        summary: "Đóng gói theo quy cách cho khách hàng doanh nghiệp và người dùng cá nhân, phân phối qua nhiều kênh.",
+        summary: "Sản phẩm đạt chuẩn được đóng gói, lưu kho và phân phối đến khách hàng.",
         steps: [
-          "Quy cách lớn cho trang trại, HTX và nhà máy",
-          "Quy cách nhỏ cho người làm vườn",
-          "Bán trực tiếp B2B, qua đại lý và kênh trực tuyến",
-        ],
-      },
-      {
-        number: "06",
-        title: "Ứng dụng trong nông nghiệp",
-        keyword: "Thử nghiệm · Phản hồi",
-        summary: "Sản phẩm trở lại phục vụ sản xuất nông nghiệp; phản hồi thực tế được dùng để cải tiến sản phẩm.",
-        steps: [
-          "Hướng dẫn sử dụng và mô hình thử nghiệm với khách hàng B2B",
-          "Thu thập phản hồi về quy cách, phối trộn và mức độ phù hợp",
-          "Cải tiến sản phẩm theo dữ liệu thực tế",
+          "Quy cách nhỏ cho hộ gia đình và người làm vườn",
+          "Bao lớn tiêu chuẩn đến bao jumbo cho trang trại, HTX và nhà máy phân bón",
+          "Phân phối qua hợp đồng B2B trực tiếp, đại lý và thương mại điện tử",
         ],
       },
     ],
+    outputsLabel: "Sản phẩm đầu ra",
+    outputs: ["Than sinh học dạng cục/mảnh", "Than sinh học dạng nghiền"],
     disclaimer:
       "Quy trình và thông số được xây dựng trong giai đoạn pilot; nhiệt độ, độ ẩm và các chỉ tiêu chất lượng sẽ tiếp tục được chuẩn hóa qua các lô sản xuất thực tế.",
   },
@@ -448,10 +500,11 @@ export const vi: Dictionary = {
     title: "Bắt đầu một vòng tuần hoàn",
     accent: "giá trị mới.",
     body: "Chia sẻ nhu cầu sản phẩm, yêu cầu thông tin kỹ thuật, mẫu thử hoặc cơ hội hợp tác. Đội ngũ Eco Biochar sẽ trao đổi phương án phù hợp với điều kiện sử dụng của bạn.",
-    // Official channels are not published in the report; replace when confirmed.
+    // Email/phone are invented placeholders: see content/contact-info.ts.
     channels: [
-      { label: "Email", value: "Đang cập nhật" },
-      { label: "Điện thoại", value: "Đang cập nhật" },
+      { label: "Đơn vị", value: "Công ty Cổ phần Agrichar Vĩnh Long" },
+      { label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}` },
+      { label: "Điện thoại", value: contactInfo.phone, href: contactInfo.phoneHref },
       { label: "Khu vực hoạt động", value: "Vĩnh Long · Bến Tre · Đồng bằng sông Cửu Long" },
     ],
     form: {
@@ -497,10 +550,9 @@ export const vi: Dictionary = {
         message: "Vui lòng mô tả nhu cầu (tối thiểu 10 ký tự).",
       },
       demoTitle: "Đã ghi nhận trên trình duyệt — đây là bản demo.",
-      demoBody:
-        "Thông tin chưa được gửi tới Eco Biochar vì trang chưa kết nối hệ thống tiếp nhận. Kênh liên hệ chính thức đang được cập nhật.",
+      demoBody: "Thông tin chưa được gửi tới Agrichar Vĩnh Long vì trang chưa kết nối hệ thống tiếp nhận.",
       sentTitle: "Cảm ơn bạn! Yêu cầu đã được gửi.",
-      sentBody: "Đội ngũ Eco Biochar sẽ phản hồi qua email bạn cung cấp.",
+      sentBody: "Đội ngũ Agrichar Vĩnh Long sẽ phản hồi qua email bạn cung cấp.",
       errorTitle: "Chưa gửi được yêu cầu.",
       errorBody: "Vui lòng thử lại sau ít phút.",
     },
@@ -513,6 +565,7 @@ export const vi: Dictionary = {
     contactHeading: "Liên hệ",
     footerNav: "Liên kết chân trang",
     copyright: "© 2026 Công ty Cổ phần Agrichar Vĩnh Long. Dự án Eco Biochar.",
+    team: "Nhóm 5: Quản trị kinh doanh - IUH",
     disclaimer: "Hình ảnh bao bì là thiết kế định hướng; thông tin sản phẩm đang trong giai đoạn thử nghiệm.",
   },
 };

@@ -12,10 +12,10 @@ type Props = {
   common: Dictionary["common"];
   nav: Dictionary["nav"];
   cta: Dictionary["primaryCta"];
-  slogan: string;
+  brand: Dictionary["brand"];
 };
 
-export function Header({ locale, common, nav, cta, slogan }: Props) {
+export function Header({ locale, common, nav, cta, brand }: Props) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string | null>(null);
 
@@ -68,7 +68,7 @@ export function Header({ locale, common, nav, cta, slogan }: Props) {
       </a>
       <div className="container-page flex h-[4.5rem] items-center justify-between gap-6">
         <a href="#top" aria-label={common.homeLabel} className="shrink-0">
-          <Logo onDark={onDark} />
+          <Logo company={brand.company} product={brand.product} onDark={onDark} />
         </a>
 
         <nav aria-label={common.mainNav} className="hidden xl:block">
@@ -110,7 +110,7 @@ export function Header({ locale, common, nav, cta, slogan }: Props) {
           >
             {cta.label}
           </a>
-          <MobileNavigation onDark={onDark} locale={locale} common={common} nav={nav} cta={cta} slogan={slogan} />
+          <MobileNavigation onDark={onDark} locale={locale} common={common} nav={nav} cta={cta} brand={brand} />
         </div>
       </div>
     </header>
