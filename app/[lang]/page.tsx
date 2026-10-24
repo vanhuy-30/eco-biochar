@@ -21,10 +21,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
-      <Intro t={t.intro} slogan={t.brand.slogan} />
-      <Header locale={lang} common={t.common} nav={t.nav} cta={t.primaryCta} slogan={t.brand.slogan} />
+      <Intro t={t.intro} company={t.brand.company} slogan={t.brand.slogan} />
+      <Header locale={lang} common={t.common} nav={t.nav} cta={t.primaryCta} brand={t.brand} />
       <main id="noi-dung" tabIndex={-1} className="outline-none">
-        <HeroSection t={t.hero} />
+        <HeroSection t={t.hero} brand={t.brand} productAlt={t.products.imageAlt} />
         <BrandStorySection t={t.story} logoAlt={t.brand.logoAlt} />
         <ProductShowcase t={t.products} close={t.common.close} />
         <ProductionProcess t={t.process} />

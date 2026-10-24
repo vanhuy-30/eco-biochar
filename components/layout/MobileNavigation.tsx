@@ -14,14 +14,14 @@ type Props = {
   common: Dictionary["common"];
   nav: Dictionary["nav"];
   cta: Dictionary["primaryCta"];
-  slogan: string;
+  brand: Dictionary["brand"];
 };
 
 /**
  * Full-screen menu below xl. The panel is portalled to <body> because the
  * header uses backdrop-filter, which would otherwise contain fixed children.
  */
-export function MobileNavigation({ onDark, locale, common, nav, cta, slogan }: Props) {
+export function MobileNavigation({ onDark, locale, common, nav, cta, brand }: Props) {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -94,7 +94,7 @@ export function MobileNavigation({ onDark, locale, common, nav, cta, slogan }: P
               className="grain fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-section-dark text-cream"
             >
               <div className="container-page flex h-[4.5rem] shrink-0 items-center justify-between">
-                <Logo onDark />
+                <Logo company={brand.company} product={brand.product} onDark />
                 <button
                   type="button"
                   aria-label={common.closeMenu}
@@ -132,7 +132,7 @@ export function MobileNavigation({ onDark, locale, common, nav, cta, slogan }: P
                   <LanguageSwitch locale={locale} label={common.languageLabel} />
                   <ThemeToggle label={common.themeToggle} className="hover:bg-cream/10" />
                 </div>
-                <p className="mt-auto pt-12 font-display text-lg font-light text-cream/60 italic">{slogan}</p>
+                <p className="mt-auto pt-12 font-display text-lg font-light text-cream/60 italic">{brand.slogan}</p>
               </div>
             </div>,
             document.body,

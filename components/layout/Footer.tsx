@@ -9,7 +9,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
     <footer className="border-t border-line bg-surface-alt">
       <div className="container-page grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-5">
-          <Logo />
+          <Logo company={t.brand.company} product={t.brand.product} size="lg" />
           <p className="mt-6 font-display text-2xl font-light text-accent italic">{t.brand.slogan}</p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-muted">{t.brand.description}</p>
           <div className="mt-6 flex items-center gap-2 text-ink">
@@ -61,7 +61,9 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
             {t.contact.channels.map((c) => (
               <div key={c.label}>
                 <dt className="text-ink-muted">{c.label}</dt>
-                <dd className="text-ink/85">{c.href ? <a href={c.href}>{c.value}</a> : c.value}</dd>
+                <dd className="text-ink/85 [overflow-wrap:anywhere]">
+                  {c.href ? <a href={c.href}>{c.value}</a> : c.value}
+                </dd>
               </div>
             ))}
           </dl>
@@ -70,7 +72,10 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
 
       <div className="border-t border-line">
         <div className="container-page flex flex-col gap-2 py-6 text-xs text-ink-muted md:flex-row md:items-center md:justify-between">
-          <p>{t.footer.copyright}</p>
+          <div>
+            <p>{t.footer.copyright}</p>
+            <p className="mt-1 font-medium text-ink/75">{t.footer.team}</p>
+          </div>
           <p>{t.footer.disclaimer}</p>
         </div>
       </div>

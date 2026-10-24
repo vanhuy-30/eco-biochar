@@ -191,3 +191,19 @@ Semantic landmarks (`header`, `nav`, `main`, `section[aria-labelledby]`, `footer
 
 - **Intro** (`components/layout/Intro.tsx`, styles in `globals.css`): mirrors the reference's sequence (line-art mark draws in, name/tagline rise from blur, loading rule, corner labels, skip button, upward wipe at ~2.3s). The boot script sets `html[data-intro]` before first paint: `on` for the first page of a session, `off` when already seen or when reduced motion is requested; the overlay is only displayed for `on`, so there is no flash either way.
 - **Hero entrance:** staggered rise/fade of eyebrow, headline phrases, copy, CTAs and facts; product image unveils upward, settles, then breathes slowly; orbit ring rotates; background glow drifts. Delays add `--hero-delay` (2.45s while the intro plays, 300ms after skipping, 0 otherwise). Everything ends in its normal state and is disabled under `prefers-reduced-motion`.
+
+## 18. Update — company-first branding and fixes
+
+- **Company before product:** header, mobile menu, footer, intro, hero and metadata lead with "Agrichar Vĩnh Long"; "Eco Biochar" appears as the smaller product line. `Logo` takes `company` and `product` props from `dictionary.brand`.
+- **Hero:** company lockup (logo mark on a cream seal) above the headline; the two sharp packaging shots replace the low-resolution composite and are shown whole in staggered arches.
+- **Citation:** the 156,8 triệu tấn figure carries a source card that opens the original Chinhphu.vn article (new tab, `rel="noopener noreferrer"`). The article was read to confirm the figure and date.
+- **Process:** back to the report's nine steps, shown as a timeline with a sticky detail panel on desktop and inline detail on mobile.
+- **Product images:** cards use the natural aspect ratio and the dialog uses `object-contain`, so a bag is never cropped.
+- **Contact:** email and phone are invented placeholders (see `content/contact-info.ts`).
+
+## 19. Update — hero layout and sizing
+
+- Hero is a two-column layout from `lg`: lockup + headline + copy on the left, the two packaging arches on the right from the top of the section (same top edge, no stagger), so both products are in the first viewport. Below `lg`: lockup + headline, products, then copy and CTAs.
+- Company name sizes reduced (hero, header, footer, intro); the company is still larger than the product line.
+- Footer carries the team credit under the copyright line.
+- Vietnamese headline uses non-breaking spaces so "giá trị" and "gáo dừa" never split across lines.

@@ -23,7 +23,9 @@ export function ContactSection({ t }: { t: Dictionary["contact"] }) {
             {t.channels.map((c) => (
               <div key={c.label} className="grid grid-cols-[8.5rem_1fr] gap-4 text-sm">
                 <dt className="text-cream/50">{c.label}</dt>
-                <dd className="text-cream/90">{c.href ? <a href={c.href}>{c.value}</a> : c.value}</dd>
+                <dd className="min-w-0 text-cream/90 [overflow-wrap:anywhere]">
+                  {c.href ? <a href={c.href}>{c.value}</a> : c.value}
+                </dd>
               </div>
             ))}
           </dl>

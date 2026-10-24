@@ -58,18 +58,19 @@ export function ProductDialog({ product, t, close, onClose }: Props) {
       onClose={handleClose}
       onClick={(e) => e.target === ref.current && ref.current?.close()}
       aria-labelledby="product-dialog-title"
-      className="m-auto max-h-[calc(100svh-2rem)] w-[min(56rem,calc(100vw-2rem))] overflow-y-auto rounded-[4px] bg-surface p-0 text-ink shadow-2xl backdrop:bg-forest-ink/70 backdrop:backdrop-blur-sm"
+      className="m-auto max-h-[calc(100svh-2rem)] w-[min(60rem,calc(100vw-2rem))] overflow-y-auto rounded-[4px] bg-surface p-0 text-ink shadow-2xl backdrop:bg-forest-ink/70 backdrop:backdrop-blur-sm"
     >
       {product && image ? (
         <div className="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-          <div className={`relative ${product.tone === "char" ? "bg-char" : "bg-kraft"}`}>
+          {/* Whole product image, never cropped: natural aspect ratio, centred on a matching backdrop. */}
+          <div className={`flex items-center justify-center ${product.tone === "char" ? "bg-char" : "bg-kraft"}`}>
             <Image
               src={image.src}
               width={image.width}
               height={image.height}
               alt={t.imageAlt[product.id]}
-              sizes="(min-width: 768px) 360px, 100vw"
-              className="h-56 w-full object-cover md:h-full"
+              sizes="(min-width: 768px) 400px, 100vw"
+              className="h-auto max-h-[calc(100svh-2rem)] w-full object-contain"
             />
           </div>
           <div className="relative p-6 md:p-10">

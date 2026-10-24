@@ -1,31 +1,44 @@
 import Image from "next/image";
 import { images } from "@/content/images";
 
-/**
- * Brand lockup: official logo mark + "Eco Biochar" wordmark.
- * `onDark` forces light text (header over the hero, mobile menu); otherwise it follows the theme.
- */
-export function Logo({ onDark = false, className = "" }: { onDark?: boolean; className?: string }) {
+type Props = {
+  /** Company name, shown as the dominant line. */
+  company: string;
+  /** Product line, shown smaller underneath. */
+  product: string;
+  /** Forces light text (header over the hero, mobile menu); otherwise the text follows the theme. */
+  onDark?: boolean;
+  size?: "md" | "lg";
+  className?: string;
+};
+
+/** Brand lockup: official logo mark + company name (large) + product line (small). */
+export function Logo({ company, product, onDark = false, size = "md", className = "" }: Props) {
+  const lg = size === "lg";
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+    <span className={`inline-flex items-center ${lg ? "gap-4" : "gap-3"} ${className}`}>
       <Image
         src={images.logoMark.src}
         width={images.logoMark.width}
         height={images.logoMark.height}
         alt=""
-        className="h-9 w-auto"
+        className={lg ? "h-14 w-auto" : "h-9 w-auto"}
         priority
       />
       <span className="flex flex-col leading-none">
         <span
-          className={`font-display text-[1.35rem] font-semibold tracking-[-0.02em] ${onDark ? "text-cream" : "text-heading"}`}
+          className={`font-display font-semibold tracking-[-0.02em] ${lg ? "text-[1.65rem]" : "text-[1.3rem]"} ${
+            onDark ? "text-cream" : "text-heading"
+          }`}
         >
-          Eco Biochar
+          {company}
         </span>
         <span
-          className={`mt-1 text-[0.58rem] font-semibold tracking-[0.22em] uppercase ${onDark ? "text-cream/60" : "text-eyebrow"}`}
+          className={`font-semibold tracking-[0.22em] uppercase ${lg ? "mt-2 text-[0.66rem]" : "mt-1.5 text-[0.58rem]"} ${
+            onDark ? "text-mint" : "text-eyebrow"
+          }`}
         >
-          Agrichar Vĩnh Long
+          {product}
         </span>
       </span>
     </span>

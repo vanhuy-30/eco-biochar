@@ -1,3 +1,4 @@
+import { contactInfo } from "./contact-info";
 import type { Dictionary } from "./types";
 
 /**
@@ -6,9 +7,9 @@ import type { Dictionary } from "./types";
  */
 export const en: Dictionary = {
   meta: {
-    title: "Eco Biochar — Circular biochar from coconut shells",
+    title: "Agrichar Vinh Long — Eco Biochar, coconut-shell biochar",
     description:
-      "Eco Biochar turns coconut shells from Ben Tre and the Mekong Delta into chunk and powder biochar for agriculture. Regenerating value – Greening agriculture.",
+      "Agrichar Vinh Long Joint Stock Company makes Eco Biochar — chunk and powder biochar from coconut shells in Ben Tre and the Mekong Delta. Regenerating value – Greening agriculture.",
     ogAlt: "Biochar Chunk and Biochar Powder packaging by AGRICHAR VINH LONG",
   },
   common: {
@@ -26,15 +27,19 @@ export const en: Dictionary = {
     close: "Close",
   },
   intro: {
-    label: "Eco Biochar introduction",
+    label: "Agrichar Vinh Long introduction",
+    product: "The Eco Biochar product line",
     cornerTop: "Vietnam · Circular biochar",
     cornerBottom: "Coconut shell → Biochar",
     skip: "Skip intro",
   },
   brand: {
+    company: "Agrichar Vinh Long",
+    legalName: "Agrichar Vinh Long Joint Stock Company",
+    product: "Eco Biochar",
     slogan: "Regenerating value – Greening agriculture",
     description:
-      "Eco Biochar turns coconut shells – a by-product of coconut processors in Ben Tre and the Mekong Delta – into biochar for agriculture.",
+      "Agrichar Vinh Long develops Eco Biochar — biochar from coconut shells, a by-product of coconut processors in Ben Tre and the Mekong Delta — for agriculture.",
     logoAlt: "AGRICHAR VINH LONG logo",
     logoNote:
       "The AGRICHAR VINH LONG logo: a seedling growing from biochar in a coconut shell, framed by a circular loop.",
@@ -48,10 +53,11 @@ export const en: Dictionary = {
   ],
   primaryCta: { label: "Partner with us", href: "#hop-tac" },
   hero: {
-    eyebrow: "Coconut-shell biochar · Mekong Delta, Vietnam",
+    companyLabel: "Joint Stock Company",
+    productLine: "The Eco Biochar product line · Coconut-shell biochar",
     title: "Regenerating value from coconut shells.",
     accent: "Growing a greener future.",
-    body: "Eco Biochar turns agricultural by-products into biochar, working towards more resource-efficient solutions for farming.",
+    body: "Agrichar Vinh Long turns agricultural by-products into Eco Biochar, working towards more resource-efficient solutions for farming.",
     ctaPrimary: "Explore products",
     ctaSecondary: "Partner with us",
     facts: [
@@ -60,25 +66,37 @@ export const en: Dictionary = {
     ],
     imageCaption: "Biochar Chunk & Biochar Powder",
     imageNote: "Packaging concept design",
-    imageAlt:
-      "Packaging concept for Biochar Chunk and Biochar Powder by AGRICHAR VINH LONG, beside coconut shells and biochar",
     scrollCue: "Scroll to explore",
-    marquee: ["Regenerating value", "Greening agriculture", "Biochar Chunk", "Biochar Powder", "From Ben Tre coconuts"],
+    marquee: [
+      "Agrichar Vinh Long",
+      "Regenerating value",
+      "Greening agriculture",
+      "Biochar Chunk",
+      "Biochar Powder",
+      "From Ben Tre coconuts",
+    ],
   },
   story: {
     index: "01",
-    eyebrow: "The Eco Biochar story",
+    eyebrow: "The Agrichar Vinh Long story",
     title: "Every loop begins",
     accent: "with what gets left behind.",
     intro:
-      "Eco Biochar is a project of Agrichar Vinh Long Joint Stock Company, producing biochar from agricultural by-products with a circular-economy approach.",
+      "Agrichar Vinh Long Joint Stock Company develops Eco Biochar — biochar from agricultural by-products, with a circular-economy approach.",
     logoCaption:
       "The AGRICHAR VINH LONG logo: a seedling growing from biochar in a coconut shell, framed by a circular loop.",
+    statPrefix: "Over",
     statNumber: "156.8",
     statUnit: "million tonnes",
     statLabel:
-      "of agricultural by-products generated in Vietnam in 2020 — biomass that can be converted instead of discarded.",
-    statSource: "Source: Vietnam Government News (2021), citing the General Statistics Office.",
+      "of agricultural by-products were generated nationwide in 2020, according to the General Statistics Office — biomass that can be converted instead of discarded.",
+    statSource: {
+      label: "Cited source",
+      title: "Phụ phẩm nông nghiệp: Nguồn tài nguyên đang bị lãng phí (“Agricultural by-products: a wasted resource”)",
+      meta: "Vietnam Government News (Chinhphu.vn), 10 Sep 2021, in Vietnamese · Figures from the General Statistics Office, 2020",
+      openHint: "opens the original article in a new tab",
+      url: "https://baochinhphu.vn/phu-pham-nong-nghiep-nguon-tai-nguyen-dang-bi-lang-phi-102300165.htm",
+    },
     points: [
       {
         title: "An under-used resource",
@@ -201,76 +219,113 @@ export const en: Dictionary = {
     eyebrow: "Circular process",
     title: "From coconut shell",
     accent: "back to the soil.",
-    intro: "Nine production steps grouped into six stages — from feedstock collection to field use and feedback.",
+    intro:
+      "Nine steps from collecting coconut shells to packing and distribution, following the project's general process.",
     stages: [
       {
         number: "01",
         title: "Shell collection",
         keyword: "Feedstock",
         summary:
-          "Coconut shells are collected from coconut processors, cooperatives and households in Ben Tre and the Mekong Delta.",
+          "Coconut-shell by-product is collected from households, cooperatives and coconut processors in Ben Tre and the Mekong Delta.",
         steps: [
-          "Supply organised around local feedstock clusters",
-          "Suppliers assessed on volume, moisture, impurities and distance",
+          "A reasonably stable feedstock supply for production",
+          "Suppliers assessed on volume, moisture, impurities and distance before selection",
+          "Aims to reduce the amount of biomass that is burned off",
         ],
       },
       {
         number: "02",
-        title: "Feedstock preparation",
-        keyword: "Sort · Shred · Dry",
-        summary: "Shells are sorted, cleaned, roughly shredded for uniform size and dried before pyrolysis.",
-        steps: [
-          "Remove soil, stones, metal and unsuitable material",
-          "Pre-shred for a more uniform size",
-          "Dry, aiming to reuse waste heat from the system",
-        ],
+        title: "Sorting and cleaning",
+        keyword: "Input control",
+        summary:
+          "Inorganic impurities such as soil, stones, metal, plastic waste and other harmful material are removed.",
+        steps: ["Protects the shredding/grinding equipment", "Keeps the biochar product pure", "Keeps operations safe"],
       },
       {
         number: "03",
+        title: "Pre-shredding",
+        keyword: "Uniform size",
+        summary: "Cleaned shells are fed into a shredder/grinder to bring them to a uniform size.",
+        steps: [
+          "Helps drying go faster",
+          "Helps heat spread evenly in the pyrolysis kiln",
+          "Pre-shredding size is adjusted to the moisture of each batch",
+        ],
+      },
+      {
+        number: "04",
+        title: "Drying",
+        keyword: "Lower moisture",
+        summary:
+          "Moisture is brought down to a standard level (typically below 15–20%) before the shells enter the pyrolysis kiln.",
+        steps: [
+          "High moisture wastes heating energy and lowers pyrolysis efficiency",
+          "Aims to reuse waste heat from the pyrolysis system for drying",
+          "Helps save input fuel",
+        ],
+        highlight: "Moisture < 15–20%",
+      },
+      {
+        number: "05",
         title: "Low-oxygen pyrolysis",
         keyword: "Core stage",
-        summary: "Dried shells are heated in a closed kiln with limited oxygen, turning them into a carbon-rich solid.",
+        summary:
+          "Dried shells are fed into a closed kiln and heated without oxygen, producing biochar rich in fixed carbon.",
         steps: [
           "Heated at around 400–600°C in the project's plan",
-          "Aim to recover pyrolysis gas to supply heat back to the system",
-          "Controlled cooling for safety",
+          "Aims to recover pyrolysis gas (syngas) and burn it in a loop to supply heat back to the dryer and kiln",
+          "This is the stage that determines biochar quality",
         ],
         highlight: "400–600°C",
       },
       {
-        number: "04",
-        title: "Processing & grading",
-        keyword: "Grind · Screen · QC",
-        summary: "Biochar is ground and screened into two formats and quality-checked batch by batch.",
-        steps: [
-          "Two formats: chunks/pieces and ground powder",
-          "Batch checks: moisture, fixed carbon, ash, pH, porosity, particle size",
-          "Batch records kept for comparison and traceability",
-        ],
-      },
-      {
-        number: "05",
-        title: "Packing & distribution",
-        keyword: "B2B · Dealers · Online",
-        summary: "Packed for business customers and individual users, and distributed through several channels.",
-        steps: [
-          "Large formats for farms, cooperatives and factories",
-          "Small packs for gardeners",
-          "Direct B2B sales, dealers and online channels",
-        ],
-      },
-      {
         number: "06",
-        title: "Use in agriculture",
-        keyword: "Trials · Feedback",
-        summary: "The product returns to farming; field feedback is used to improve it.",
+        title: "Safe cooling",
+        keyword: "Safety control",
+        summary: "Biochar leaving the kiln is very hot and can ignite if it suddenly meets oxygen in the air.",
         steps: [
-          "Usage guidance and trial plots with B2B customers",
-          "Feedback on format, blending and suitability",
-          "Product improvements based on real data",
+          "Controlled cooling: heat-exchange conveyor or light controlled wetting",
+          "Limits smouldering risk and keeps workers safe",
+          "Preserves the stable carbon structure of the product",
+        ],
+      },
+      {
+        number: "07",
+        title: "Grinding, screening, grading",
+        keyword: "Two formats",
+        summary: "Raw biochar is ground, screened and graded into the two main commercial formats once cooled.",
+        steps: [
+          "Chunks/pieces: keep the natural porous structure, for farms improving soil",
+          "Ground: small, uniform particles for fertiliser, growing-media and potting-soil producers",
+        ],
+      },
+      {
+        number: "08",
+        title: "Quality control (QC)",
+        keyword: "Batch by batch",
+        summary:
+          "Each batch is tested against core technical criteria before packing (following IBI-oriented standards).",
+        steps: [
+          "Moisture, fixed carbon, ash content",
+          "pH, porosity, particle size",
+          "Batch data recorded for consistency and to build trust with B2B customers",
+        ],
+      },
+      {
+        number: "09",
+        title: "Packing and distribution",
+        keyword: "B2B · Dealers · Online",
+        summary: "Products that pass are packed, stored and distributed to customers.",
+        steps: [
+          "Small packs for households and gardeners",
+          "Standard large bags up to jumbo bags for farms, cooperatives and fertiliser plants",
+          "Distribution through direct B2B contracts, dealers and e-commerce",
         ],
       },
     ],
+    outputsLabel: "Output products",
+    outputs: ["Biochar in chunks / pieces", "Ground biochar"],
     disclaimer:
       "The process and parameters were defined for the pilot phase; temperature, moisture and quality criteria will continue to be standardised through real production batches.",
   },
@@ -449,10 +504,11 @@ export const en: Dictionary = {
     title: "Start a new loop",
     accent: "of value.",
     body: "Tell us about your product needs, or request technical information, samples or a partnership conversation. The Eco Biochar team will suggest an option suited to your conditions.",
-    // Official channels are not published in the report; replace when confirmed.
+    // Email/phone are invented placeholders: see content/contact-info.ts.
     channels: [
-      { label: "Email", value: "Coming soon" },
-      { label: "Phone", value: "Coming soon" },
+      { label: "Company", value: "Agrichar Vinh Long Joint Stock Company" },
+      { label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}` },
+      { label: "Phone", value: contactInfo.phone, href: contactInfo.phoneHref },
       { label: "Region", value: "Vinh Long · Ben Tre · Mekong Delta, Vietnam" },
     ],
     form: {
@@ -499,9 +555,9 @@ export const en: Dictionary = {
       },
       demoTitle: "Recorded in your browser — this is a demo.",
       demoBody:
-        "Your request has not been sent to Eco Biochar because this site is not yet connected to an intake system. Official contact channels are coming soon.",
+        "Your request has not been sent to Agrichar Vinh Long because this site is not yet connected to an intake system.",
       sentTitle: "Thank you! Your request has been sent.",
-      sentBody: "The Eco Biochar team will reply to the email you provided.",
+      sentBody: "The Agrichar Vinh Long team will reply to the email you provided.",
       errorTitle: "Your request could not be sent.",
       errorBody: "Please try again in a few minutes.",
     },
@@ -514,6 +570,7 @@ export const en: Dictionary = {
     contactHeading: "Contact",
     footerNav: "Footer links",
     copyright: "© 2026 Agrichar Vinh Long Joint Stock Company. The Eco Biochar project.",
+    team: "Group 5: Business Administration - IUH",
     disclaimer: "Packaging images are concept designs; product information is at the pilot stage.",
   },
 };

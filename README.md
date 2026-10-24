@@ -40,9 +40,9 @@ npm run build && npm start
 
 ## Before launch
 
-- Replace contact placeholders in `content/vi.ts` and `content/en.ts` (`contact.channels`).
+- Replace the **invented** email and phone in `content/contact-info.ts` (placeholders only: `.example` domain, unassigned number).
 - Have a native speaker review the English copy in `content/en.ts`.
-- Replace brand images in `public/images/` (currently taken from the report's identity figures; packaging is a design render) and update `content/images.ts`.
+- Replace the packaging images in `public/images/` with real photography when available (current ones are the company's design renders) and update `content/images.ts`. `packaging-duo.jpg` is only used for social cards.
 - Confirm product specifications and packaging sizes; copy currently says "liên hệ để nhận thông số".
 - Connect a form endpoint.
 - See `docs/content-inventory.md` for every item marked *Cần xác nhận*.
